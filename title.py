@@ -63,5 +63,3 @@ def title(url):
     data = tool.image_to_string(img3, lang="jpn", builder=builder11)
 
     return check(data)
-
-print(title("https://github.com/Cosmic-rare/result-database-jupyter/blob/main/2023-02-11/final/fastlate-target.png?raw=true"))

@@ -40,5 +40,3 @@ def score(url):
     builder = pyocr.builders.TextBuilder(tesseract_layout=7)
     result = tool.image_to_string(img2, lang="eng", builder=builder)
     return result
-
-print(score("https://github.com/Cosmic-rare/result-database-jupyter/blob/main/2023-02-11/final/wide-target.png?raw=true"))
