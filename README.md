@@ -6,7 +6,7 @@ https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targe
 
 https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/fastlate.png
 
-https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/target.jpeg
+https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/target.jpg
 
 ### build
 
