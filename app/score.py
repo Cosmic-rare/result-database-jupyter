@@ -9,9 +9,9 @@ import math
 import requests
 import io
 
-# path_tesseract = "C:\\Program Files\\Tesseract-OCR"
-# if path_tesseract not in os.environ["PATH"].split(os.pathsep):
-#     os.environ["PATH"] += os.pathsep + path_tesseract
+path_tesseract = "C:\\Program Files\\Tesseract-OCR"
+if path_tesseract not in os.environ["PATH"].split(os.pathsep):
+    os.environ["PATH"] += os.pathsep + path_tesseract
 
 tools = pyocr.get_available_tools()
 tool = tools[0]
@@ -38,5 +38,7 @@ def score(url):
             img2.putpixel((x,y),(g,g,g,255))
 
     builder = pyocr.builders.TextBuilder(tesseract_layout=7)
+    builder.tesseract_configs.append("-c")
+    builder.tesseract_configs.append("tessedit_char_whitelist=\"0123456789\"")
     result = tool.image_to_string(img2, lang="eng", builder=builder)
     return result

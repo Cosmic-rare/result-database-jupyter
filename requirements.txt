@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pyocr
+matplotlib
+numpy
+requests
