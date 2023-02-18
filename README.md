@@ -27,3 +27,23 @@ $ docker-compose up
 
 $ docker-compos down
 ```
+
+## result
+
+```
+{
+  "score": {
+    "score": "596068"
+  },
+  "title": {
+    "title": "Brand New Day",
+    "id": 128,
+    "credibility": 1
+  },
+  "difficult": {
+    "musicDifficulty": "EXPERT",
+    "credibility": 0.9230769230769231,
+    "ocr": "SEXPERT"
+  }
+}
+```
