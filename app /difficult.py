@@ -9,6 +9,7 @@ import math
 import requests
 import io
 import difflib
+import json
 
 path_tesseract = "C:\\Program Files\\Tesseract-OCR"
 if path_tesseract not in os.environ["PATH"].split(os.pathsep):
@@ -17,23 +18,37 @@ if path_tesseract not in os.environ["PATH"].split(os.pathsep):
 tools = pyocr.get_available_tools()
 tool = tools[0]
 
-def check(target):
+def getDifficult(musicId, difficult):
+    with open('./json/difficult.json', encoding="utf-8") as f1:
+        difficulties = json.load(f1)
+
+        data = "n/a"
+
+        for i in difficulties:
+            if i["musicId"] == musicId and difficult.lower() == i["musicDifficulty"]:
+                data = (i)
+
+        return data
+
+def check(target, musicId):
     difficults = ["EASY","NORMAL","HARD","EXPERT","MASTER"]
 
-    data = {"credibility":0,"difficult":""}
+    data = {"credibility":0,"musicDifficulty":""}
 
     for j in difficults:
         result = difflib.SequenceMatcher(None, target, j).ratio()
 
         if result > data["credibility"]:
-            data["difficult"] = j
+            data["musicDifficulty"] = j
             data["credibility"] = result
 
-    data["data"] = target
+    data["ocr"] = target
+
+    data["data"] = getDifficult(musicId, data["musicDifficulty"])
 
     return data
 
-def difficult(url):
+def difficult(url, musicId):
     img = Image.open(io.BytesIO(requests.get(url).content))    
     rgb_img = img.convert('RGB')
     size = rgb_img.size
@@ -69,4 +84,4 @@ def difficult(url):
     builder.tesseract_configs.append("tessedit_char_whitelist=\"EASYNORMLHDXPT\"")
     data = tool.image_to_string(img2, lang="eng", builder=builder)
     
-    return check(data)
+    return check(data, musicId)

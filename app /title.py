@@ -21,7 +21,7 @@ tool = tools[0]
 border = 215
 
 def check (target):
-    with open('./music.json', encoding="utf-8") as f1:
+    with open('./json/music.json', encoding="utf-8") as f1:
         music = json.load(f1)
 
         data = {}
@@ -30,8 +30,9 @@ def check (target):
             result = difflib.SequenceMatcher(None, target, j["title"]).ratio()
 
             if result > 0.6:
-                data = ({"title":j["title"], "result":result, "id": j["id"]})
+                data = ({"title":j["title"], "credibility":result, "music": j})
 
+        data["ocr"] = target
         return data
 
 def title(url):
