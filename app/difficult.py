@@ -1,15 +1,11 @@
 import os
-import time
 from PIL import Image
 import pyocr
-import numpy as np
 import pyocr.builders
-import matplotlib.pyplot as plt
 import math
-import requests
-import io
 import difflib
 import json
+from open import openImg
 
 path_tesseract = "C:\\Program Files\\Tesseract-OCR"
 if path_tesseract not in os.environ["PATH"].split(os.pathsep):
@@ -49,7 +45,7 @@ def check(target, musicId):
     return data
 
 def difficult(url, musicId):
-    img = Image.open(io.BytesIO(requests.get(url).content))    
+    img = openImg(url)
     rgb_img = img.convert('RGB')
     size = rgb_img.size
 

@@ -1,15 +1,10 @@
 import os
 from PIL import Image
 import pyocr
-import numpy as np
 import pyocr.builders
-import matplotlib.pyplot as plt
-import math
 import difflib
 import json
-import time
-import requests
-import io
+from open import openImg
 
 path_tesseract = "C:\\Program Files\\Tesseract-OCR"
 if path_tesseract not in os.environ["PATH"].split(os.pathsep):
@@ -36,7 +31,7 @@ def check (target):
         return data
 
 def title(url):
-    img = Image.open(io.BytesIO(requests.get(url).content))
+    img = openImg(url)
     
     rgb_img = img.convert('RGB')
     size = rgb_img.size
@@ -62,5 +57,7 @@ def title(url):
     
     builder11 = pyocr.builders.TextBuilder(tesseract_layout=11)
     data = tool.image_to_string(img3, lang="jpn", builder=builder11)
+
+    data = data.replace("\n", "")
 
     return check(data)
