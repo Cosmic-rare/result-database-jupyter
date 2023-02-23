@@ -7,7 +7,7 @@ from difficult import difficult
 app = FastAPI()
 
 
-@app.get("/")
+@app.post("/")
 def upload_file(url):
     scoreData = score(url)
     titleData = title(url)
