@@ -28,22 +28,30 @@ $ docker-compose up
 $ docker-compos down
 ```
 
-## result
+## jupyter, venv
 
+### create venv
+
+```bash
+$ python3 -m venv /path/to/new/virtual/environment
 ```
-{
-  "score": {
-    "score": "596068"
-  },
-  "title": {
-    "title": "Brand New Day",
-    "id": 128,
-    "credibility": 1
-  },
-  "difficult": {
-    "musicDifficulty": "EXPERT",
-    "credibility": 0.9230769230769231,
-    "ocr": "SEXPERT"
-  }
-}
+
+### activate venv
+
+```bash
+$ source <venv>/bin/activate.fish
+```
+
+### launch jupyter
+
+```bash
+$ jupyter-lab
+```
+
+### requirements.txt
+
+```bash
+$ pip freeze > requirements.txt
+
+$ pip install -r requirements.txt
 ```
