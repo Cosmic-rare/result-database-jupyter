@@ -58,4 +58,5 @@ def get_ratio(search_content_path, search_target_path):
   # Magnification factor to match DPI
   return {'search_content': 1, 'search_target': 1 / (distance_target / distance_content)}
 
-print(get_ratio(search_content_path='./final/img2.png', search_target_path='./targets/wide.png'))
+if __name__ == '__main__':
+  print(get_ratio(search_content_path='./final/img2.png', search_target_path='./targets/wide.png'))
