@@ -16,16 +16,22 @@ from matplotlib import pyplot as plt
 
 # search_contentとsearch_targetはRGBのNumpyArray
 def do_matching(search_content, search_target):
+  print(search_target.shape)
   search_target = search_target[
     search_target.shape[0] // 2 : search_target.shape[0] // 8 * 7,
     0 : search_target.shape[1] // 4 * 3
   ]
+  print(search_target.shape)
 
+  print(search_content.shape)
 
-  if search_content.shape[0] <= search_content.shape[0]:
+  if search_target.shape[0] <= search_content.shape[0]:
     ratio = 1 - (search_content.shape[0] - search_target.shape[0]) / search_content.shape[0]
   else:
     ratio = 1
+
+  print(ratio)
+  print(search_content.shape)
 
   search_content = cv2.resize(search_content, None, None, ratio, ratio)
 
