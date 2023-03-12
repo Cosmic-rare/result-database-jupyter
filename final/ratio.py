@@ -18,11 +18,7 @@ def get_distance(x1, y1, x2, y2):
   d = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
   return d
   
-def get_ratio(search_content_path, search_target_path):
-  # 画像の見込み
-  search_content = cv2.cvtColor(cv2.imread(search_content_path), cv2.COLOR_BGR2RGB)
-  search_target = cv2.cvtColor(cv2.imread(search_target_path), cv2.COLOR_BGR2RGB)
-
+def get_ratio(search_content, search_target):
   # 特徴点の検出
   akaze = cv2.AKAZE_create()                                
   kp1, des1 = akaze.detectAndCompute(cv2.cvtColor(search_content,cv2.COLOR_BGR2GRAY) , None)
@@ -59,4 +55,7 @@ def get_ratio(search_content_path, search_target_path):
   return {'search_content': 1, 'search_target': 1 / (distance_target / distance_content)}
 
 if __name__ == '__main__':
-  print(get_ratio(search_content_path='./final/img2.png', search_target_path='./targets/wide.png'))
+  search_content = cv2.cvtColor(cv2.imread('./final/img2.png'), cv2.COLOR_BGR2RGB)
+  search_target = cv2.cvtColor(cv2.imread('./targets/wide.png'), cv2.COLOR_BGR2RGB)
+
+  print(get_ratio(search_content=search_content, search_target=search_target))
