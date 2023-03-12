@@ -63,3 +63,23 @@ $ pip install -r requirements.txt
 - ~~似ている基準点を２つ見つけて、距離からDPIを揃えるための比率を計算する~~
 - その比率から`img2`(検索する部分)を拡大・縮小して、`template-matching`を行う
 - `PERFECT`の位置から右に進んで緑の線にぶつかるまでを範囲とする
+
+## Memo
+
+```python
+img = cv2.imread('./img.png')
+# numpy.ndarra
+```
+
+```python
+img = Image.open('./img.png')
+# PIL.Image
+```
+
+```python
+# numpy to pillow
+pil_img = Image.fromarray(numpy_img)
+
+# pillow to numpy
+numpy_img = np.array(pil_img)
+```
