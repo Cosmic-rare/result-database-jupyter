@@ -18,6 +18,11 @@ from matplotlib import pyplot as plt
 def do_matching(search_content, search_target):
   color_range = 25
  
+  # 上 1/2
+  # 下 1/8
+  # 右 1/4
+  # 左 0
+  # を切り取っている
   search_target = search_target[
     search_target.shape[0] // 2 : search_target.shape[0] // 8 * 7,
     0 : search_target.shape[1] // 4 * 3
@@ -78,7 +83,8 @@ def do_matching(search_content, search_target):
     if bb:
       result2.append(x)
     
-  return result2
+  # ToDo: 画像を縮小・拡大・クロップしたところを戻した座標を
+  return result2, tl, br
   
 if __name__ == '__main__':
   search_content = cv2.cvtColor(cv2.imread('./final/img2.png'), cv2.COLOR_BGR2RGB)
