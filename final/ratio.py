@@ -17,7 +17,8 @@ def get_distance(x1, y1, x2, y2):
   # 二点間の距離を三平方の定理で求める
   d = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
   return d
-  
+
+# search_contentとsearch_targetはRGBのNumpyArray
 def get_ratio(search_content, search_target):
   # 特徴点の検出
   akaze = cv2.AKAZE_create()                                
