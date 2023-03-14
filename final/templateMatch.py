@@ -8,16 +8,14 @@ import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 from ratio import get_ratio
-from IPython.display import display
 from matplotlib import pyplot as plt
 import math
 
-
-# search_content == face_img
-# search_target == full_img
-
-# search_contentとsearch_targetはRGBのNumpyArray
+# face_imgとfull_imgはRGBのNumpyArray
 def do_matching(face_img, full_img):
+  full_img_shape = full_img.shape
+  full_img3 = full_img.copy()
+
   full_img = full_img[
     full_img.shape[0] // 2 : full_img.shape[0] // 8 * 7,
     0 : full_img.shape[1] // 4 * 3
@@ -84,10 +82,12 @@ def do_matching(face_img, full_img):
 
   full_ratio = 1 / search_target_ratio
 
-  final = full_img2[
-    math.floor(full_ratio * tl[1]) : math.floor(full_ratio * br[1]),
-    math.floor(full_ratio * tl[0]) : math.floor(full_ratio * tl[0]) + result2[0] - 5
-  ]
+  final = {
+    "top": math.floor(full_ratio * tl[1]) + full_img_shape[0] // 2,
+    "bottom": math.floor(full_ratio * br[1]) + full_img_shape[0] // 2,
+    "left": math.floor(full_ratio * tl[0]),
+    "right": math.floor(full_ratio * tl[0]) + result2[0] - 5
+  }
 
   return final
   
@@ -97,4 +97,6 @@ if __name__ == '__main__':
 
   res = do_matching(face_img=search_content, full_img=search_target)
 
-  Image.fromarray(res).show()
+
+  cv2.rectangle(search_target, (res["left"], res["top"]), (res["right"], res["bottom"]), 255, 4)
+  Image.fromarray(search_target).show()
