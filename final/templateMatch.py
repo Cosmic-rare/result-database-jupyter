@@ -12,48 +12,45 @@ from IPython.display import display
 from matplotlib import pyplot as plt
 import math
 
+
 # search_content == face_img
 # search_target == full_img
 
 # search_contentとsearch_targetはRGBのNumpyArray
-def do_matching(search_content, search_target):
-  color_range = 25
-
-  # 上 1/2
-  # 下 1/8
-  # 右 1/4
-  # 左 0
-  # を切り取っている
-  search_target = search_target[
-    search_target.shape[0] // 2 : search_target.shape[0] // 8 * 7,
-    0 : search_target.shape[1] // 4 * 3
+def do_matching(face_img, full_img):
+  full_img = full_img[
+    full_img.shape[0] // 2 : full_img.shape[0] // 8 * 7,
+    0 : full_img.shape[1] // 4 * 3
   ]
 
-  print(search_target.shape)
+  full_img2 = full_img.copy()
 
-  if search_target.shape[0] <= search_content.shape[0]:
-    ratio = 1 - (search_content.shape[0] - search_target.shape[0]) / search_content.shape[0]
+  if full_img.shape[0] <= face_img.shape[0]:
+    ratio = 1 - (face_img.shape[0] - full_img.shape[0]) / face_img.shape[0]
   else:
     ratio = 1
-  search_content = cv2.resize(search_content, None, None, ratio, ratio)
 
-  search_target_ratio = get_ratio(search_content=search_content, search_target=search_target)['search_target']
+  face_img = cv2.resize(face_img, None, None, ratio, ratio)
 
-  search_target = cv2.resize(search_target, None, None, search_target_ratio, search_target_ratio)
+  search_target_ratio = get_ratio(search_content=face_img, search_target=full_img)['search_target']
 
-  result = cv2.matchTemplate(search_target, search_content, getattr(cv2, 'TM_CCOEFF_NORMED'))
+  full_img = cv2.resize(full_img, None, None, search_target_ratio, search_target_ratio)
+
+  result = cv2.matchTemplate(full_img, face_img, cv2.TM_CCOEFF_NORMED)
   minVal, maxVal, minLoc, maxLoc = cv2.minMaxLoc(result)
 
   tl = maxLoc
-  br = (tl[0] + search_content.shape[1], tl[1] + search_content.shape[0])
+  br = (tl[0] + face_img.shape[1], tl[1] + face_img.shape[0])
 
-  dst = search_target.copy()
+  dst = full_img.copy()
+
   dst = dst[
-    tl[1] + search_content.shape[0] // 10 * 3 - 5 : tl[1] + search_content.shape[0] // 10 * 3 + 5,
+    tl[1] + face_img.shape[0] // 10 * 3 - 5 : tl[1] + face_img.shape[0] // 10 * 3 + 5,
     tl[0] : dst.shape[1]
   ]
 
   np_dst = np.full((dst.shape[0], dst.shape[1]), 0)
+  color_range = 25
 
   for y in range(dst.shape[0]):
     for x in range(dst.shape[1]):
@@ -72,29 +69,32 @@ def do_matching(search_content, search_target):
       
       np_dst[y][x] = a
 
-  bb = False
   result2 = []
 
   for x in range(np_dst.shape[1]):
-    bb = False
+    b = False
     for y in range(np_dst.shape[0]):
       if np_dst[y][x] == 0:
-        bb = True
+        b = True
       else:
-        bb = False
+        b = False
         break
-    if bb:
-      result2.append(x)
-    
-  # ToDo: 画像を縮小・拡大・クロップしたところを戻した座標を
+    if b:
+      result2.append(math.floor((1 / search_target_ratio) * x))
 
-  cv2.rectangle(search_target, tl, br, 255, 10)
-  Image.fromarray(search_target).show()
+  full_ratio = 1 / search_target_ratio
 
-  return result2, tl, br
+  final = full_img2[
+    math.floor(full_ratio * tl[1]) : math.floor(full_ratio * br[1]),
+    math.floor(full_ratio * tl[0]) : math.floor(full_ratio * tl[0]) + result2[0] - 5
+  ]
+
+  return final
   
 if __name__ == '__main__':
   search_content = cv2.cvtColor(cv2.imread('./final/img2.png'), cv2.COLOR_BGR2RGB)
-  search_target = cv2.cvtColor(cv2.imread('./targets/target.jpg'), cv2.COLOR_BGR2RGB)
+  search_target = cv2.cvtColor(cv2.imread('./targets/normal.png'), cv2.COLOR_BGR2RGB)
 
-  print(do_matching(search_content=search_content, search_target=search_target))
+  res = do_matching(face_img=search_content, full_img=search_target)
+
+  Image.fromarray(res).show()
