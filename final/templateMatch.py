@@ -10,44 +10,19 @@ import numpy as np
 from ratio import get_ratio
 import math
 
-# face_imgとfull_imgはRGBのNumpyArray
-def do_matching(face_img, full_img):
-  full_img_shape = full_img.shape
-  full_img3 = full_img.copy()
-
-  full_img = full_img[
-    full_img.shape[0] // 2 : full_img.shape[0] // 8 * 7,
-    0 : full_img.shape[1] // 4 * 3
-  ]
-
-  full_img2 = full_img.copy()
-
-  if full_img.shape[0] <= face_img.shape[0]:
-    ratio = 1 - (face_img.shape[0] - full_img.shape[0]) / face_img.shape[0]
-  else:
-    ratio = 1
-
-  face_img = cv2.resize(face_img, None, None, ratio, ratio)
-
-  search_target_ratio = get_ratio(search_content=face_img, search_target=full_img)['search_target']
-
-  full_img = cv2.resize(full_img, None, None, search_target_ratio, search_target_ratio)
-
+def match(face_img, full_img):
+  # 2つの画像をマッチングする
   result = cv2.matchTemplate(full_img, face_img, cv2.TM_CCOEFF_NORMED)
   minVal, maxVal, minLoc, maxLoc = cv2.minMaxLoc(result)
 
   tl = maxLoc
   br = (tl[0] + face_img.shape[1], tl[1] + face_img.shape[0])
 
-  dst = full_img.copy()
+  return tl, br
 
-  dst = dst[
-    tl[1] + face_img.shape[0] // 10 * 3 - 5 : tl[1] + face_img.shape[0] // 10 * 3 + 5,
-    tl[0] : dst.shape[1]
-  ]
-
+def grayscale(dst, color_range):
+  # 例の青緑色を黒,それ以外を白にして出力する
   np_dst = np.full((dst.shape[0], dst.shape[1]), 0)
-  color_range = 25
 
   for y in range(dst.shape[0]):
     for x in range(dst.shape[1]):
@@ -65,8 +40,12 @@ def do_matching(face_img, full_img):
           a = 255
       
       np_dst[y][x] = a
+  
+  return np_dst
 
-  result2 = []
+def black_line(np_dst, search_target_ratio):
+  # 縦のすべての列が黒の地点のx座標を調べる
+  result = []
 
   for x in range(np_dst.shape[1]):
     b = False
@@ -74,31 +53,72 @@ def do_matching(face_img, full_img):
       if np_dst[y][x] == 0:
         b = True
       else:
-        b = False
+        # 白なら抜ける
         break
     if b:
-      result2.append(math.floor((1 / search_target_ratio) * x))
+      # 縦すべてが黒の時
+      result.append(math.floor((1 / search_target_ratio) * x))
 
+  return result
+
+class Ratio:
+  def __init__(self, ratio, full_hight, tl, br):
+    self.ratio = ratio
+    self.hight = full_hight // 2
+    self.top = self.restore(tl[1]) + self.hight
+    self.bottom = self.restore(br[1]) + self.hight
+  
+  def restore(self, num):
+    return math.floor(num * self.ratio)
+
+def get_point(face_img, full_img):
+  full_img_shape = full_img.shape
+
+  # 変なところに特徴点がプロットされないように,なるべく小さくしておく
+  full_img = full_img[
+    full_img.shape[0] // 2 : full_img.shape[0] // 8 * 7,
+    0 : full_img.shape[1] // 4 * 3
+  ]
+
+  # 検索内容が全体より大きくならないように縮小
+  if full_img.shape[0] <= face_img.shape[0]:
+    search_content_ratio = 1 - (face_img.shape[0] - full_img.shape[0]) / face_img.shape[0]
+  else:
+    search_content_ratio = 1
+  face_img = cv2.resize(face_img, None, None, search_content_ratio, search_content_ratio)
+
+  # DPIを揃えるための比と,戻すための比
+  search_target_ratio = get_ratio(search_content=face_img, search_target=full_img)['search_target']
   full_ratio = 1 / search_target_ratio
 
+  # DPIを揃える
+  full_img = cv2.resize(full_img, None, None, search_target_ratio, search_target_ratio)
+
+  # マッチングをする
+  tl, br = match(face_img=face_img, full_img=full_img)
+
+  # 緑線検出をする(crop -> grayscale -> get_position)
+  dst = full_img.copy()
+  dst = dst[
+    tl[1] + face_img.shape[0] // 10 * 3 - 5 : tl[1] + face_img.shape[0] // 10 * 3 + 5,
+    tl[0] : dst.shape[1]
+  ]
+  np_dst = grayscale(dst=dst, color_range=25)
+  result = black_line(np_dst=np_dst, search_target_ratio=search_target_ratio)
+
+  # 拡大を戻すいろいろ
+  a = Ratio(ratio=full_ratio, full_hight=full_img_shape[0], tl=tl, br=br)
+
+  # crop,search_target_ratioを配慮して座標を計算する
   final = {
     "character": {
-      "top": math.floor(full_ratio * tl[1]) + full_img_shape[0] // 2,
-      "bottom": math.floor(full_ratio * br[1]) + full_img_shape[0] // 2,
-      "left": math.floor(full_ratio * tl[0]),
-      "right": math.floor(full_ratio * br[0])
+      "top": a.top, "bottom": a.bottom, "left": a.restore(tl[0]), "right": a.restore(br[0])
     },
     "both": {
-      "top": math.floor(full_ratio * tl[1]) + full_img_shape[0] // 2,
-      "bottom": math.floor(full_ratio * br[1]) + full_img_shape[0] // 2,
-      "left": math.floor(full_ratio * tl[0]),
-      "right": math.floor(full_ratio * tl[0]) + result2[0] - 5
+      "top": a.top, "bottom": a.bottom, "left": a.restore(tl[0]), "right": a.restore(tl[0]) + result[0] - 5
     },
     "number": {
-      "top": math.floor(full_ratio * tl[1]) + full_img_shape[0] // 2,
-      "bottom": math.floor(full_ratio * br[1]) + full_img_shape[0] // 2,
-      "left": math.floor(full_ratio * br[0]),
-      "right": math.floor(full_ratio * tl[0]) + result2[0] - 5
+      "top": a.top, "bottom": a.bottom, "left": a.restore(br[0]), "right": a.restore(tl[0]) + result[0] - 5
     }
   }
 
@@ -108,7 +128,7 @@ if __name__ == '__main__':
   search_content = cv2.cvtColor(cv2.imread('./final/img2.png'), cv2.COLOR_BGR2RGB)
   search_target = cv2.cvtColor(cv2.imread('./targets/normal.png'), cv2.COLOR_BGR2RGB)
 
-  res = do_matching(face_img=search_content, full_img=search_target)
+  res = get_point(face_img=search_content, full_img=search_target)
   point = res["number"]
 
   cv2.rectangle(search_target, (point["left"], point["top"]), (point["right"], point["bottom"]), 255, 4)
