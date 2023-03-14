@@ -126,7 +126,7 @@ def get_point(face_img, full_img):
   
 if __name__ == '__main__':
   search_content = cv2.cvtColor(cv2.imread('./targets/img2.png'), cv2.COLOR_BGR2RGB)
-  search_target = cv2.cvtColor(cv2.imread('./targets/normal.png'), cv2.COLOR_BGR2RGB)
+  search_target = cv2.cvtColor(cv2.imread('./targets/target.jpg'), cv2.COLOR_BGR2RGB)
 
   res = get_point(face_img=search_content, full_img=search_target)
   point = res["number"]
