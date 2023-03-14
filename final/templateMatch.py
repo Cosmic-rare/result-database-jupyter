@@ -10,6 +10,7 @@ import numpy as np
 from ratio import get_ratio
 from IPython.display import display
 from matplotlib import pyplot as plt
+import math
 
 # search_content == face_img
 # search_target == full_img
@@ -17,7 +18,7 @@ from matplotlib import pyplot as plt
 # search_contentとsearch_targetはRGBのNumpyArray
 def do_matching(search_content, search_target):
   color_range = 25
- 
+
   # 上 1/2
   # 下 1/8
   # 右 1/4
@@ -27,6 +28,8 @@ def do_matching(search_content, search_target):
     search_target.shape[0] // 2 : search_target.shape[0] // 8 * 7,
     0 : search_target.shape[1] // 4 * 3
   ]
+
+  print(search_target.shape)
 
   if search_target.shape[0] <= search_content.shape[0]:
     ratio = 1 - (search_content.shape[0] - search_target.shape[0]) / search_content.shape[0]
@@ -84,6 +87,10 @@ def do_matching(search_content, search_target):
       result2.append(x)
     
   # ToDo: 画像を縮小・拡大・クロップしたところを戻した座標を
+
+  cv2.rectangle(search_target, tl, br, 255, 10)
+  Image.fromarray(search_target).show()
+
   return result2, tl, br
   
 if __name__ == '__main__':
