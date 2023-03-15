@@ -5,6 +5,8 @@ import cv2
 import os
 import pyocr
 import pyocr.builders
+from open import openImg
+import numpy as np
 
 path_tesseract = "C:\\Program Files\\Tesseract-OCR"
 if path_tesseract not in os.environ["PATH"].split(os.pathsep):
@@ -17,8 +19,9 @@ builder = pyocr.builders.TextBuilder(tesseract_layout=7)
 builder.tesseract_configs.append("-c")
 builder.tesseract_configs.append('tessedit_char_whitelist="0123456789"')
 
-search_content = cv2.cvtColor(cv2.imread('./targets/img2.png'), cv2.COLOR_BGR2RGB)
-search_target = cv2.cvtColor(cv2.imread('./targets/normal.png'), cv2.COLOR_BGR2RGB)
+search_content = cv2.cvtColor(cv2.imread('./app/lib/template.png'), cv2.COLOR_BGR2RGB)
+url = 'https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/normal.png'
+search_target = np.array(openImg(url))
 
 res = get_point(face_img=search_content, full_img=search_target)
 point = res["number"]
