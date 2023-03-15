@@ -16,11 +16,24 @@ if path_tesseract not in os.environ["PATH"].split(os.pathsep):
 tools = pyocr.get_available_tools()
 tool = tools[0]
 
-builder = pyocr.builders.DigitBuilder(tesseract_layout=7)
-# builder.tesseract_configs.append("-c")
-# builder.tesseract_configs.append('tessedit_char_whitelist="0123456789"')
+builder1 = pyocr.builders.DigitBuilder(tesseract_layout=6)
+
+builder2 = pyocr.builders.DigitBuilder(tesseract_layout=7)
+
+builder3 = pyocr.builders.TextBuilder(tesseract_layout=6)
+builder3.tesseract_configs.append("-c")
+builder3.tesseract_configs.append('tessedit_char_whitelist="0123456789"')
+
+builder4 = pyocr.builders.TextBuilder(tesseract_layout=7)
+builder4.tesseract_configs.append("-c")
+builder4.tesseract_configs.append('tessedit_char_whitelist="0123456789"')
+
+builder5 = pyocr.builders.TextBuilder(tesseract_layout=6)
+
+builder6 = pyocr.builders.TextBuilder(tesseract_layout=7)
 
 judges = ['PERFECT', 'GREAT', 'GOOD', 'BAD', 'MISS']
+nums = ['0','1','2','3','4','5','6','7','8','9']
 search_content = cv2.cvtColor(cv2.imread('./lib/template.png'), cv2.COLOR_BGR2RGB)
 border = 230
 WHITE = [255,255,255]
@@ -39,6 +52,9 @@ def judge(url):
   datas = {}
   hight = img.shape[0] // 5
 
+  for k in range(1,7):
+    datas['builder' + str(k)] = {}
+
   for i in range(len(judges)):
     cropped_img = img[hight * i : hight * (i + 1), 0 : img.shape[1]]
 
@@ -54,8 +70,11 @@ def judge(url):
         cropped_img[y][x][1] = a
         cropped_img[y][x][2] = a
 
-    cropped_img = cv2.copyMakeBorder(cropped_img, 50, 50, 50, 50, cv2.BORDER_CONSTANT, value=WHITE)     
-    datas[judges[i]] = tool.image_to_string(Image.fromarray(cropped_img), lang="eng", builder=builder)
+    cropped_img = cv2.copyMakeBorder(cropped_img, 50, 50, 50, 50, cv2.BORDER_CONSTANT, value=WHITE)  
+
+    for j in range(1,7):
+      result = tool.image_to_string(Image.fromarray(cropped_img), lang="eng", builder=eval('builder' + str(j)))
+      datas['builder' + str(j)][judges[i]] = result
 
   return datas
 
