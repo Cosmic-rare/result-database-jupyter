@@ -70,3 +70,14 @@ pil_img = Image.fromarray(numpy_img)
 # pillow to numpy
 numpy_img = np.array(pil_img)
 ```
+
+## API-Memo
+
+### builders
+
+1. number-6
+2. number-7
+3. text-whitelist-6
+4. text-whitelist-7
+5. text-6
+6. text-7
