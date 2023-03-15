@@ -4,3 +4,4 @@ pyocr
 matplotlib
 numpy
 requests
+opencv-python

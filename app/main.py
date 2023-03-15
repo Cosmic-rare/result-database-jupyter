@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from score import score
 from title import title
 from difficult import difficult
+from judge import judge
 
 app = FastAPI()
 
@@ -12,5 +13,6 @@ def upload_file(url):
     scoreData = score(url)
     titleData = title(url)
     difficultData = difficult(url, titleData["music"]["id"])
+    judgeData = judge(url)
 
-    return {"score": scoreData, "title": titleData, "difficult": difficultData}
+    return {"score": scoreData, "title": titleData, "difficult": difficultData, "judge": judgeData}
