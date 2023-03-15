@@ -1,12 +1,12 @@
 ## targets
 
-https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/normal.png
+[https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/normal.png](https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/normal.png)
 
-https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/wide.png
+[https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/wide.png](https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/wide.png)
 
-https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/fastlate.png
+[https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/fastlate.png](https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/fastlate.png)
 
-https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/target.jpg
+[https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/target.jpg](https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/target.jpg)
 
 ### build
 
