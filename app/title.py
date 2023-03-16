@@ -15,6 +15,10 @@ tool = tools[0]
 
 border = 215
 
+builder1 = pyocr.builders.TextBuilder(tesseract_layout=6)
+builder2 = pyocr.builders.TextBuilder(tesseract_layout=7)
+builder3 = pyocr.builders.TextBuilder(tesseract_layout=11)
+
 def check(target):
   with open('./json/music.json', encoding='utf-8') as f1:
     music = json.load(f1)
@@ -60,9 +64,14 @@ def title(url):
         [crop_range[0], crop_range[1] - 5, crop_range[2], (crop_range[3]) / 2]
     )
 
-    builder11 = pyocr.builders.TextBuilder(tesseract_layout=11)
-    data = tool.image_to_string(img3, lang='jpn', builder=builder11)
+    data1 = tool.image_to_string(img3, lang='jpn', builder=builder1)
+    data2 = tool.image_to_string(img3, lang='jpn', builder=builder2)
+    data3 = tool.image_to_string(img3, lang='jpn', builder=builder3)
 
-    data = data.replace('\n', '')
+    data3 = data3.replace('\n', '')
 
-    return check(data)
+    data1 = check(data1)
+    data2 = check(data2)
+    data3 = check(data3)
+    
+    return {'builder1':data1,'builder2':data2,'builder3':data3}
