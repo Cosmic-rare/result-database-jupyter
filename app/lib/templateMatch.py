@@ -29,15 +29,15 @@ def grayscale(dst, color_range):
       r, g, b = dst[y][x]
 
       if r<=70 and 215 <= g <= 255 and 205<=b<=236:
-          a = 0
+        a = 0
       elif 114-color_range < r < 144+color_range and 241-color_range < g < 241+color_range and 219-color_range < b < 219+color_range:
-          a = 0
+        a = 0
       elif 108-color_range < r < 108+color_range and 193-color_range < g < 193+color_range and 190-color_range < b < 190+color_range:
-          a = 0
+        a = 0
       elif 115-color_range < r < 115+color_range and 233-color_range < g < 233+color_range and 215-color_range < b < 215+color_range:
-          a = 0
+        a = 0
       else:
-          a = 255
+        a = 255
       
       np_dst[y][x] = a
   

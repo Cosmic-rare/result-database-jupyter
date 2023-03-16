@@ -33,8 +33,8 @@ def get_ratio(search_content, search_target):
   ratio = 0.75
   good2 = []
   for m, n in matches:
-      if m.distance < ratio * n.distance:
-          good2.append(m)
+    if m.distance < ratio * n.distance:
+      good2.append(m)
 
   # 精度順にソートして、距離を求めて、倍率を出す
   good2 = bubble_sort(good2)

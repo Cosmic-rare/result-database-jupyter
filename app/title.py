@@ -8,30 +8,29 @@ from open import openImg
 
 path_tesseract = "C:\\Program Files\\Tesseract-OCR"
 if path_tesseract not in os.environ["PATH"].split(os.pathsep):
-    os.environ["PATH"] += os.pathsep + path_tesseract
+  os.environ["PATH"] += os.pathsep + path_tesseract
 
 tools = pyocr.get_available_tools()
 tool = tools[0]
 
 border = 215
 
-
 def check(target):
-    with open("./json/music.json", encoding="utf-8") as f1:
-        music = json.load(f1)
+  with open("./json/music.json", encoding="utf-8") as f1:
+    music = json.load(f1)
 
-        data = {}
-        data2 = []
+    data = {}
+    data2 = []
 
-        for j in music:
-            result = difflib.SequenceMatcher(None, target, j["title"]).ratio()
+    for j in music:
+      result = difflib.SequenceMatcher(None, target, j["title"]).ratio()
 
-            if result > 0.6:
-                data2.append({"title": j["title"], "credibility": result, "musicId": j['id']})
+      if result > 0.6:
+        data2.append({"title": j["title"], "credibility": result, "musicId": j['id']})
 
-        data["ocr"] = target
-        data['candidate'] = data2
-        return data
+    data["ocr"] = target
+    data['candidate'] = data2
+    return data
 
 
 def title(url):
@@ -46,15 +45,15 @@ def title(url):
     img2 = Image.new("RGBA", crop_size)
 
     for x in range(crop_size[0]):
-        for y in range(crop_size[1]):
-            r, g, b = crop_img.getpixel((x, y))
+      for y in range(crop_size[1]):
+        r, g, b = crop_img.getpixel((x, y))
 
-            if r >= border and g >= border and b >= border:
-                a = 255
-            else:
-                a = 0
+        if r >= border and g >= border and b >= border:
+          a = 255
+        else:
+          a = 0
 
-            img2.putpixel((x, y), (a, a, a, 255))
+        img2.putpixel((x, y), (a, a, a, 255))
 
     crop_range = img2.convert("RGB").getbbox()
     img3 = img2.crop(

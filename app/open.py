@@ -3,4 +3,4 @@ import requests
 import io
 
 def openImg(url):
-    return Image.open(io.BytesIO(requests.get(url).content))
+  return Image.open(io.BytesIO(requests.get(url).content))
