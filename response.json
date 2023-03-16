@@ -1,0 +1,62 @@
+{
+  "score": "462713",
+  "music": {
+    "ocr": "Na インビジブル",
+    "candidate": [
+      {
+        "title": "インビジブル",
+        "credibility": 0.8,
+        "musicId": 284
+      }
+    ]
+  },
+  "difficult": {
+    "credibility": 1,
+    "musicDifficulty": "EXPERT",
+    "ocr": "EXPERT"
+  },
+  "judge": {
+    "builder1": {
+      "PERFECT": "1283",
+      "GREAT": "82",
+      "GOOD": "4",
+      "BAD": "0",
+      "MISS": "16"
+    },
+    "builder2": {
+      "PERFECT": "1283",
+      "GREAT": "82",
+      "GOOD": "4",
+      "BAD": "",
+      "MISS": "16"
+    },
+    "builder3": {
+      "PERFECT": "1283",
+      "GREAT": "82",
+      "GOOD": "4",
+      "BAD": "0",
+      "MISS": "16"
+    },
+    "builder4": {
+      "PERFECT": "1283",
+      "GREAT": "82",
+      "GOOD": "4",
+      "BAD": "",
+      "MISS": "16"
+    },
+    "builder5": {
+      "PERFECT": "1283",
+      "GREAT": "82",
+      "GOOD": "4",
+      "BAD": "0",
+      "MISS": "16"
+    },
+    "builder6": {
+      "PERFECT": "1283",
+      "GREAT": "82",
+      "GOOD": "4",
+      "BAD": "0",
+      "MISS": "16"
+    }
+  }
+}

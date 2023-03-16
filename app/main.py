@@ -12,7 +12,7 @@ app = FastAPI()
 def upload_file(url):
     scoreData = score(url)
     titleData = title(url)
-    difficultData = difficult(url, titleData["music"]["id"])
+    difficultData = difficult(url)
     judgeData = judge(url)
 
-    return {"score": scoreData, "title": titleData, "difficult": difficultData, "judge": judgeData}
+    return {"score": scoreData, "music": titleData, "difficult": difficultData, "judge": judgeData}

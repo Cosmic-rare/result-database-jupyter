@@ -14,21 +14,7 @@ if path_tesseract not in os.environ["PATH"].split(os.pathsep):
 tools = pyocr.get_available_tools()
 tool = tools[0]
 
-
-def getDifficult(musicId, difficult):
-    with open("./json/difficult.json", encoding="utf-8") as f1:
-        difficulties = json.load(f1)
-
-        data = "n/a"
-
-        for i in difficulties:
-            if i["musicId"] == musicId and difficult.lower() == i["musicDifficulty"]:
-                data = i
-
-        return data
-
-
-def check(target, musicId):
+def check(target):
     difficults = ["EASY", "NORMAL", "HARD", "EXPERT", "MASTER"]
 
     data = {"credibility": 0, "musicDifficulty": ""}
@@ -42,12 +28,10 @@ def check(target, musicId):
 
     data["ocr"] = target
 
-    data["data"] = getDifficult(musicId, data["musicDifficulty"])
-
     return data
 
 
-def difficult(url, musicId):
+def difficult(url):
     img = openImg(url)
     rgb_img = img.convert("RGB")
     size = rgb_img.size
@@ -85,4 +69,4 @@ def difficult(url, musicId):
     builder.tesseract_configs.append('tessedit_char_whitelist="EASYNORMLHDXPT"')
     data = tool.image_to_string(img2, lang="eng", builder=builder)
 
-    return check(data, musicId)
+    return check(data)

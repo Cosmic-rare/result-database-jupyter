@@ -21,14 +21,16 @@ def check(target):
         music = json.load(f1)
 
         data = {}
+        data2 = []
 
         for j in music:
             result = difflib.SequenceMatcher(None, target, j["title"]).ratio()
 
             if result > 0.6:
-                data = {"title": j["title"], "credibility": result, "music": j}
+                data2.append({"title": j["title"], "credibility": result, "musicId": j['id']})
 
         data["ocr"] = target
+        data['candidate'] = data2
         return data
 
 
