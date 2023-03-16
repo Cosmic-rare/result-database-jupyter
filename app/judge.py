@@ -9,9 +9,9 @@ from open import openImg
 import numpy as np
 import glob
 
-path_tesseract = "C:\\Program Files\\Tesseract-OCR"
-if path_tesseract not in os.environ["PATH"].split(os.pathsep):
-  os.environ["PATH"] += os.pathsep + path_tesseract
+path_tesseract = 'C:\\Program Files\\Tesseract-OCR'
+if path_tesseract not in os.environ['PATH'].split(os.pathsep):
+  os.environ['PATH'] += os.pathsep + path_tesseract
 
 tools = pyocr.get_available_tools()
 tool = tools[0]
@@ -21,11 +21,11 @@ builder1 = pyocr.builders.DigitBuilder(tesseract_layout=6)
 builder2 = pyocr.builders.DigitBuilder(tesseract_layout=7)
 
 builder3 = pyocr.builders.TextBuilder(tesseract_layout=6)
-builder3.tesseract_configs.append("-c")
+builder3.tesseract_configs.append('-c')
 builder3.tesseract_configs.append('tessedit_char_whitelist="0123456789"')
 
 builder4 = pyocr.builders.TextBuilder(tesseract_layout=7)
-builder4.tesseract_configs.append("-c")
+builder4.tesseract_configs.append('-c')
 builder4.tesseract_configs.append('tessedit_char_whitelist="0123456789"')
 
 builder5 = pyocr.builders.TextBuilder(tesseract_layout=6)
@@ -42,7 +42,7 @@ def judge(url):
   search_target = np.array(openImg(url))
 
   res = get_point(face_img=search_content, full_img=search_target)
-  point = res["number"]
+  point = res['number']
 
   img = search_target[
     point['top'] : point['bottom'],
@@ -73,7 +73,7 @@ def judge(url):
     cropped_img = cv2.copyMakeBorder(cropped_img, 50, 50, 50, 50, cv2.BORDER_CONSTANT, value=WHITE)  
 
     for j in range(1,7):
-      result = tool.image_to_string(Image.fromarray(cropped_img), lang="eng", builder=eval('builder' + str(j)))
+      result = tool.image_to_string(Image.fromarray(cropped_img), lang='eng', builder=eval('builder' + str(j)))
       datas['builder' + str(j)][judges[i]] = result
 
   return datas

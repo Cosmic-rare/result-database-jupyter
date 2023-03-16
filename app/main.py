@@ -8,11 +8,11 @@ from judge import judge
 app = FastAPI()
 
 
-@app.post("/")
+@app.post('/')
 def upload_file(url):
     scoreData = score(url)
     titleData = title(url)
     difficultData = difficult(url)
     judgeData = judge(url)
 
-    return {"score": scoreData, "music": titleData, "difficult": difficultData, "judge": judgeData}
+    return {'score': scoreData, 'music': titleData, 'difficult': difficultData, 'judge': judgeData}

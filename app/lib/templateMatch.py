@@ -111,14 +111,14 @@ def get_point(face_img, full_img):
 
   # crop,search_target_ratioを配慮して座標を計算する
   final = {
-    "character": {
-      "top": a.top, "bottom": a.bottom, "left": a.restore(tl[0]), "right": a.restore(br[0])
+    'character': {
+      'top': a.top, 'bottom': a.bottom, 'left': a.restore(tl[0]), 'right': a.restore(br[0])
     },
-    "both": {
-      "top": a.top, "bottom": a.bottom, "left": a.restore(tl[0]), "right": a.restore(tl[0]) + result[0] - 5
+    'both': {
+      'top': a.top, 'bottom': a.bottom, 'left': a.restore(tl[0]), 'right': a.restore(tl[0]) + result[0] - 5
     },
-    "number": {
-      "top": a.top, "bottom": a.bottom, "left": a.restore(br[0]), "right": a.restore(tl[0]) + result[0] - 5
+    'number': {
+      'top': a.top, 'bottom': a.bottom, 'left': a.restore(br[0]), 'right': a.restore(tl[0]) + result[0] - 5
     }
   }
 
@@ -129,7 +129,7 @@ if __name__ == '__main__':
   search_target = cv2.cvtColor(cv2.imread('./targets/target.jpg'), cv2.COLOR_BGR2RGB)
 
   res = get_point(face_img=search_content, full_img=search_target)
-  point = res["number"]
+  point = res['number']
 
-  cv2.rectangle(search_target, (point["left"], point["top"]), (point["right"], point["bottom"]), 255, 4)
+  cv2.rectangle(search_target, (point['left'], point['top']), (point['right'], point['bottom']), 255, 4)
   Image.fromarray(search_target).show()

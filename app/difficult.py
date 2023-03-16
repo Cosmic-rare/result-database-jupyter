@@ -7,33 +7,33 @@ import difflib
 import json
 from open import openImg
 
-path_tesseract = "C:\\Program Files\\Tesseract-OCR"
-if path_tesseract not in os.environ["PATH"].split(os.pathsep):
-  os.environ["PATH"] += os.pathsep + path_tesseract
+path_tesseract = 'C:\\Program Files\\Tesseract-OCR'
+if path_tesseract not in os.environ['PATH'].split(os.pathsep):
+  os.environ['PATH'] += os.pathsep + path_tesseract
 
 tools = pyocr.get_available_tools()
 tool = tools[0]
 
 def check(target):
-  difficults = ["EASY", "NORMAL", "HARD", "EXPERT", "MASTER"]
+  difficults = ['EASY', 'NORMAL', 'HARD', 'EXPERT', 'MASTER']
 
-  data = {"credibility": 0, "musicDifficulty": ""}
+  data = {'credibility': 0, 'musicDifficulty': ''}
 
   for j in difficults:
     result = difflib.SequenceMatcher(None, target, j).ratio()
 
-    if result > data["credibility"]:
-      data["musicDifficulty"] = j
-      data["credibility"] = result
+    if result > data['credibility']:
+      data['musicDifficulty'] = j
+      data['credibility'] = result
 
-  data["ocr"] = target
+  data['ocr'] = target
 
   return data
 
 
 def difficult(url):
   img = openImg(url)
-  rgb_img = img.convert("RGB")
+  rgb_img = img.convert('RGB')
   size = rgb_img.size
 
   crop_img = rgb_img.crop([0, 0, size[0] / 2, size[1] / 7])
@@ -43,7 +43,7 @@ def difficult(url):
     (math.floor(crop_size[0] / 15), math.floor(crop_size[1] / 15))
   )
 
-  img2 = Image.new("RGBA", crop_size)
+  img2 = Image.new('RGBA', crop_size)
 
   for x in range(crop_size[0]):
     for y in range(crop_size[1]):
@@ -65,8 +65,8 @@ def difficult(url):
       img2.putpixel((x, y), (a, a, a, 255))
 
   builder = pyocr.builders.TextBuilder(tesseract_layout=6)
-  builder.tesseract_configs.append("-c")
+  builder.tesseract_configs.append('-c')
   builder.tesseract_configs.append('tessedit_char_whitelist="EASYNORMLHDXPT"')
-  data = tool.image_to_string(img2, lang="eng", builder=builder)
+  data = tool.image_to_string(img2, lang='eng', builder=builder)
 
   return check(data)
