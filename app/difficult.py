@@ -14,17 +14,9 @@ if path_tesseract not in os.environ['PATH'].split(os.pathsep):
 tools = pyocr.get_available_tools()
 tool = tools[0]
 
-builder1 = pyocr.builders.TextBuilder(tesseract_layout=6)
-builder1.tesseract_configs.append('-c')
-builder1.tesseract_configs.append('tessedit_char_whitelist="EASYNORMLHDXPT"')
-
 builder2 = pyocr.builders.TextBuilder(tesseract_layout=7)
 builder2.tesseract_configs.append('-c')
 builder2.tesseract_configs.append('tessedit_char_whitelist="EASYNORMLHDXPT"')
-
-builder3 = pyocr.builders.TextBuilder(tesseract_layout=6)
-
-builder4 = pyocr.builders.TextBuilder(tesseract_layout=7)
 
 def check(target):
   difficults = ['EASY', 'NORMAL', 'HARD', 'EXPERT', 'MASTER']
@@ -49,8 +41,7 @@ def difficult(url):
   size = rgb_img.size
   datas = {}
 
-  for k in range(1,5):
-    datas['builder' + str(k)] = {}
+  datas['builder' + str(2)] = {}
 
   crop_img = rgb_img.crop([0, 0, size[0] / 2, size[1] / 7])
   crop_size = crop_img.size
@@ -80,8 +71,7 @@ def difficult(url):
 
       img2.putpixel((x, y), (a, a, a, 255))
 
-  for j in range(1,5):
-    result = tool.image_to_string(img2, lang='eng', builder=eval('builder' + str(j)))
-    datas['builder' + str(j)] = check(result)
+  result = tool.image_to_string(img2, lang='eng', builder=eval('builder' + str(2)))
+  datas['builder' + str(2)] = check(result)
 
   return datas

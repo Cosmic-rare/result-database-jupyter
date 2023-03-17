@@ -50,6 +50,7 @@ def judge(url):
   ]
 
   datas = {}
+  outs = []
   hight = img.shape[0] // 5
 
   for k in range(1,7):
@@ -74,7 +75,22 @@ def judge(url):
 
     for j in range(1,7):
       result = tool.image_to_string(Image.fromarray(cropped_img), lang='eng', builder=eval('builder' + str(j)))
-      datas['builder' + str(j)][judges[i]] = result
+      nums = result
+      
+      if result == '':
+        outs.append(j)
+        continue
+
+      for k in range(10):
+        nums = nums.replace(str(k), '')
+
+      if nums == '':
+        datas['builder' + str(j)][judges[i]] = result
+      else:
+        outs.append(j)
+
+  for out in outs:
+    datas.pop('builder' + str(out))
 
   return datas
 

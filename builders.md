@@ -30,3 +30,8 @@
 - builder4: 0.75 空っぽ1 0を6と誤認 空っぽ2 空っぽ3
 - builder5: 0.95 謎文字として認識
 - builder6: 0.95 0を6と誤認
+
+- builder1 or builder3をメインにする
+- 空っぽの時、数字のみのbuilder5を使う
+- 空っぽの時、数字のみのbuilder6を使う
+- それも空っぽの時、builder2 -> builder4 -> Error

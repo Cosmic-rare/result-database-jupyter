@@ -23,17 +23,13 @@ builder4 = pyocr.builders.TextBuilder(tesseract_layout=7)
 builder4.tesseract_configs.append('-c')
 builder4.tesseract_configs.append('tessedit_char_whitelist="0123456789"')
 
-builder5 = pyocr.builders.TextBuilder(tesseract_layout=6)
-
-builder6 = pyocr.builders.TextBuilder(tesseract_layout=7)
-
 def score(url):
   img = openImg(url)
   rgb_img = img.convert('RGB')
   size = rgb_img.size
   datas = {}
 
-  for k in range(1,7):
+  for k in range(1,5):
     datas['builder' + str(k)] = {}
 
 
@@ -53,7 +49,7 @@ def score(url):
 
       img2.putpixel((x, y), (g, g, g, 255))
 
-  for j in range(1,7):
+  for j in range(1,5):
     result = tool.image_to_string(img2, lang='eng', builder=eval('builder' + str(j)))
     datas['builder' + str(j)] = result
 
