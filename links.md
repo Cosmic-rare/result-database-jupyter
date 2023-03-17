@@ -43,3 +43,17 @@ OpenCVで読みだした画像(numpy-array)のcropの方法
 ## [OpenCV – cv2.matchTemplate でテンプレートマッチングを行う方法](https://pystyle.info/opencv-template-matching/)
 
 テンプレートマッチングの類似度とヒートマップの描画
+
+# いつかやる自作OCRエンジン
+
+## [Tesseract ノベルゲームに特化した日本語OCR(文字認識)をしてみた](https://tech.spark-creative.co.jp/entry/2022/07/29/140203)
+
+Tesseractをがちがちにカスタマイズしていく
+
+## [ReinVisionOCR ノベルゲームに特化した日本語OCR(文字認識)を作ってみた](https://tech.spark-creative.co.jp/entry/2023/02/27/104132)
+
+OCRエンジンを自作
+
+## [甲骨文字で書かれた文章をOCRで読み取れるようにしてみる](https://www.tdi.co.jp/miso/tesseract-ocr)
+
+Tesseractに甲骨文字のモデルを作る
