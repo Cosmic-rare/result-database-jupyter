@@ -1,0 +1,436 @@
+{
+  "result": [
+    {
+      "url": "https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/normal.png",
+      "res": {
+        "score": {
+          "builder1": "1161441",
+          "builder2": "1161441",
+          "builder3": "1161441",
+          "builder4": "1161441",
+          "builder5": "1161441",
+          "builder6": "1161441"
+        },
+        "music": {
+          "builder1": {
+            "ocr": "",
+            "candidate": []
+          },
+          "builder2": {
+            "ocr": "",
+            "candidate": []
+          },
+          "builder3": {
+            "ocr": "ブリキノダンス",
+            "candidate": [
+              {
+                "title": "ブリキノダンス",
+                "credibility": 1,
+                "musicId": 38
+              }
+            ]
+          }
+        },
+        "difficult": {
+          "builder1": {
+            "credibility": 0.8,
+            "musicDifficulty": "MASTER",
+            "ocr": "MASTER SO"
+          },
+          "builder2": {
+            "credibility": 0.8,
+            "musicDifficulty": "MASTER",
+            "ocr": "MASTER SO"
+          },
+          "builder3": {
+            "credibility": 0.8,
+            "musicDifficulty": "MASTER",
+            "ocr": "MASTER Ce"
+          },
+          "builder4": {
+            "credibility": 0.8,
+            "musicDifficulty": "MASTER",
+            "ocr": "MASTER Ce"
+          }
+        },
+        "judge": {
+          "builder1": {
+            "PERFECT": "958",
+            "GREAT": "9",
+            "GOOD": "0",
+            "BAD": "0",
+            "MISS": "0"
+          },
+          "builder2": {
+            "PERFECT": "958",
+            "GREAT": "",
+            "GOOD": "6",
+            "BAD": "0",
+            "MISS": ""
+          },
+          "builder3": {
+            "PERFECT": "958",
+            "GREAT": "9",
+            "GOOD": "0",
+            "BAD": "0",
+            "MISS": "0"
+          },
+          "builder4": {
+            "PERFECT": "958",
+            "GREAT": "",
+            "GOOD": "6",
+            "BAD": "0",
+            "MISS": ""
+          },
+          "builder5": {
+            "PERFECT": "958",
+            "GREAT": "9",
+            "GOOD": "0",
+            "BAD": "0",
+            "MISS": "0"
+          },
+          "builder6": {
+            "PERFECT": "958",
+            "GREAT": "9",
+            "GOOD": "6",
+            "BAD": "0",
+            "MISS": "0"
+          }
+        }
+      }
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/wide.png",
+      "res": {
+        "score": {
+          "builder1": "596068",
+          "builder2": "596068",
+          "builder3": "596068",
+          "builder4": "596068",
+          "builder5": "596068",
+          "builder6": "596068"
+        },
+        "music": {
+          "builder1": {
+            "ocr": "Brand New Day",
+            "candidate": [
+              {
+                "title": "Brand New Day",
+                "credibility": 1,
+                "musicId": 128
+              }
+            ]
+          },
+          "builder2": {
+            "ocr": "Brand New Day",
+            "candidate": [
+              {
+                "title": "Brand New Day",
+                "credibility": 1,
+                "musicId": 128
+              }
+            ]
+          },
+          "builder3": {
+            "ocr": "Brand New Day",
+            "candidate": [
+              {
+                "title": "Brand New Day",
+                "credibility": 1,
+                "musicId": 128
+              }
+            ]
+          }
+        },
+        "difficult": {
+          "builder1": {
+            "credibility": 0.9230769230769231,
+            "musicDifficulty": "EXPERT",
+            "ocr": "SEXPERT"
+          },
+          "builder2": {
+            "credibility": 0.75,
+            "musicDifficulty": "EXPERT",
+            "ocr": "LS TEXPERT"
+          },
+          "builder3": {
+            "credibility": 0.631578947368421,
+            "musicDifficulty": "EXPERT",
+            "ocr": "Seam EXPERT |"
+          },
+          "builder4": {
+            "credibility": 0.631578947368421,
+            "musicDifficulty": "EXPERT",
+            "ocr": "Le r EXPERT |"
+          }
+        },
+        "judge": {
+          "builder1": {
+            "PERFECT": "1238",
+            "GREAT": "22",
+            "GOOD": "0",
+            "BAD": "0",
+            "MISS": "0"
+          },
+          "builder2": {
+            "PERFECT": "1238",
+            "GREAT": "22",
+            "GOOD": "0",
+            "BAD": "0",
+            "MISS": "0"
+          },
+          "builder3": {
+            "PERFECT": "1238",
+            "GREAT": "22",
+            "GOOD": "0",
+            "BAD": "0",
+            "MISS": "0"
+          },
+          "builder4": {
+            "PERFECT": "1238",
+            "GREAT": "22",
+            "GOOD": "0",
+            "BAD": "0",
+            "MISS": "0"
+          },
+          "builder5": {
+            "PERFECT": "1238",
+            "GREAT": "22",
+            "GOOD": "0",
+            "BAD": "0",
+            "MISS": "0"
+          },
+          "builder6": {
+            "PERFECT": "1238",
+            "GREAT": "22",
+            "GOOD": "0",
+            "BAD": "0",
+            "MISS": "0"
+          }
+        }
+      }
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/fastlate.png",
+      "res": {
+        "score": {
+          "builder1": "1504818",
+          "builder2": "1504818",
+          "builder3": "1504818",
+          "builder4": "1504818",
+          "builder5": "1504818",
+          "builder6": "1504818"
+        },
+        "music": {
+          "builder1": {
+            "ocr": "てT  ほくぐらの16bit戦争",
+            "candidate": [
+              {
+                "title": "ぼくらの16bit戦争",
+                "credibility": 0.7407407407407407,
+                "musicId": 249
+              }
+            ]
+          },
+          "builder2": {
+            "ocr": "てT  ほくぐらの16bit戦争",
+            "candidate": [
+              {
+                "title": "ぼくらの16bit戦争",
+                "credibility": 0.7407407407407407,
+                "musicId": 249
+              }
+            ]
+          },
+          "builder3": {
+            "ocr": "9eaほくぐらの16bit戦争",
+            "candidate": [
+              {
+                "title": "ぼくらの16bit戦争",
+                "credibility": 0.7692307692307693,
+                "musicId": 249
+              }
+            ]
+          }
+        },
+        "difficult": {
+          "builder1": {
+            "credibility": 0.7692307692307693,
+            "musicDifficulty": "MASTER",
+            "ocr": "LAASTER"
+          },
+          "builder2": {
+            "credibility": 1,
+            "musicDifficulty": "MASTER",
+            "ocr": "MASTER"
+          },
+          "builder3": {
+            "credibility": 0.5882352941176471,
+            "musicDifficulty": "MASTER",
+            "ocr": "La ASTER ee"
+          },
+          "builder4": {
+            "credibility": 0.6666666666666666,
+            "musicDifficulty": "MASTER",
+            "ocr": "a. MASTER oe"
+          }
+        },
+        "judge": {
+          "builder1": {
+            "PERFECT": "1521",
+            "GREAT": "0",
+            "GOOD": "0",
+            "BAD": "",
+            "MISS": "0"
+          },
+          "builder2": {
+            "PERFECT": "1521",
+            "GREAT": "0",
+            "GOOD": "0",
+            "BAD": "",
+            "MISS": "0"
+          },
+          "builder3": {
+            "PERFECT": "1521",
+            "GREAT": "0",
+            "GOOD": "0",
+            "BAD": "",
+            "MISS": "0"
+          },
+          "builder4": {
+            "PERFECT": "1521",
+            "GREAT": "0",
+            "GOOD": "0",
+            "BAD": "",
+            "MISS": "0"
+          },
+          "builder5": {
+            "PERFECT": "1521",
+            "GREAT": "0",
+            "GOOD": "0",
+            "BAD": "ce)",
+            "MISS": "0"
+          },
+          "builder6": {
+            "PERFECT": "1521",
+            "GREAT": "0",
+            "GOOD": "0",
+            "BAD": "0",
+            "MISS": "0"
+          }
+        }
+      }
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/target.jpg",
+      "res": {
+        "score": {
+          "builder1": "462713",
+          "builder2": "462713",
+          "builder3": "462713",
+          "builder4": "462713",
+          "builder5": "462/13",
+          "builder6": "462/13"
+        },
+        "music": {
+          "builder1": {
+            "ocr": "Na   インビジブル",
+            "candidate": [
+              {
+                "title": "インビジブル",
+                "credibility": 0.7058823529411765,
+                "musicId": 284
+              }
+            ]
+          },
+          "builder2": {
+            "ocr": "Na   インビジブル",
+            "candidate": [
+              {
+                "title": "インビジブル",
+                "credibility": 0.7058823529411765,
+                "musicId": 284
+              }
+            ]
+          },
+          "builder3": {
+            "ocr": "Na インビジブル",
+            "candidate": [
+              {
+                "title": "インビジブル",
+                "credibility": 0.8,
+                "musicId": 284
+              }
+            ]
+          }
+        },
+        "difficult": {
+          "builder1": {
+            "credibility": 1,
+            "musicDifficulty": "EXPERT",
+            "ocr": "EXPERT"
+          },
+          "builder2": {
+            "credibility": 1,
+            "musicDifficulty": "EXPERT",
+            "ocr": "EXPERT"
+          },
+          "builder3": {
+            "credibility": 0.8,
+            "musicDifficulty": "EXPERT",
+            "ocr": "EXPERT Vv"
+          },
+          "builder4": {
+            "credibility": 0.8,
+            "musicDifficulty": "EXPERT",
+            "ocr": "EXPERT Vv"
+          }
+        },
+        "judge": {
+          "builder1": {
+            "PERFECT": "1283",
+            "GREAT": "82",
+            "GOOD": "4",
+            "BAD": "0",
+            "MISS": "16"
+          },
+          "builder2": {
+            "PERFECT": "1283",
+            "GREAT": "82",
+            "GOOD": "4",
+            "BAD": "",
+            "MISS": "16"
+          },
+          "builder3": {
+            "PERFECT": "1283",
+            "GREAT": "82",
+            "GOOD": "4",
+            "BAD": "0",
+            "MISS": "16"
+          },
+          "builder4": {
+            "PERFECT": "1283",
+            "GREAT": "82",
+            "GOOD": "4",
+            "BAD": "",
+            "MISS": "16"
+          },
+          "builder5": {
+            "PERFECT": "1283",
+            "GREAT": "82",
+            "GOOD": "4",
+            "BAD": "0",
+            "MISS": "16"
+          },
+          "builder6": {
+            "PERFECT": "1283",
+            "GREAT": "82",
+            "GOOD": "4",
+            "BAD": "0",
+            "MISS": "16"
+          }
+        }
+      }
+    }
+  ]
+}
