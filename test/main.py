@@ -34,7 +34,7 @@ imgs = [
   },
   {
     "url": "https://raw.githubusercontent.com/Cosmic-rare/result-database-jupyter/main/targets/target.jpg",
-    'score': '462/13',
+    'score': '462713',
     'title': 'インビジブル',
     'difficult' : 'EXPERT',
     'PERFECT': '1283',
